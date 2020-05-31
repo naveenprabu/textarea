@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js" ></script>
+    <style>
+        body{
+            text-align: center;
+            background-color: coral;
+        }
+        textarea,select{
+            border-width: 2px;
+            border-radius: 10px;
+            border-color: black;
+        }
+        #char{
+            font-size: 20px;
+        }
+
+    </style>
+</head>
+
+<body ng-app="myApp">
+ <div ng-controller="myCtrl">
+	  <h1>Type Your Paragraph</h1>
+	 <textarea type="text" id="myBtn" cols="100px" rows="10px" ng-model="inputmessage" placeholder="Typing...." ></textarea>
+      <br>
+     <p id="char" ng-show="inputmessage.length>0">No of characters:{{inputmessage.length}}</p>
+     <br>
+	  <button ng-click="myFunc()" >Create DropDown</button>
+	  <br><br>
+	  <select id="arr" style="width: 30%"></select> 
+ </div>
+<script>
+angular.module('myApp', [])
+  .controller('myCtrl', ['$scope', function($scope) {
+    $scope.count = 0;
+    $scope.myFunc = function() {
+      var x=document.getElementById("myBtn").value;
+		var select = document.getElementById("arr"); 
+		var elmts = x.split(" ");
+			for (var i = 0; i < elmts.length; i++) { 
+				var optn = elmts[i]; 
+				var el=document.createElement("option"); 
+				el.textContent = optn; 
+				el.value = optn; 
+				select.appendChild(el); 
+			} 
+    };
+  }]);
+</script>
+</body>
+</html>
